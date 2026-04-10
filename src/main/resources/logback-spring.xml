@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Console appender -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <!-- File appender for PLC writer errors -->
+    <appender name="PlcWriterErrorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/plc-writer-errors.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </encoder>
+        
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Daily rollover -->
+            <fileNamePattern>logs/archived/plc-writer-errors.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- Keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+            <!-- Total size cap -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Logger for general application logs -->
+    <root level="info">
+        <appender-ref ref="Console" />
+    </root>
+
+    <!-- Specific logger for PLC writer errors -->
+    <logger name="plcWriterErrors" level="ERROR" additivity="false">
+        <appender-ref ref="PlcWriterErrorFile" />
+        <appender-ref ref="Console" />
+    </logger>
+</configuration> 
