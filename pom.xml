@@ -195,7 +195,7 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>1.18.22</version> <!-- Ensure the version
+							<version>1.18.34</version> <!-- Ensure the version
 							matches what you're using -->
 						</path>
 					</annotationProcessorPaths>
