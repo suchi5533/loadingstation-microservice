@@ -59,7 +59,7 @@ public class LoadingStationController {
 
 	@GetMapping("/home")
 	public String  home() {
-		return "hi from spring boot";
+		return "hi from spring boot suchit waghamare";
 	}
 
 }
